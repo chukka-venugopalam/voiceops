@@ -7,3 +7,4 @@
 - Verified 47/47 tests, 23/23 focused product/retrieval tests, dataset validation, offline evaluation summaries, and the 3-turn voice output.
 - Verified saved baseline steps: Step 1 prompt-only (23.1% content, 88.5% decision) and Step 2 RAG (96.2% content/decision, 0.819 retrieval recall); this sprint made no new LLM calls.
 - Public target repository: https://github.com/chukka-venugopalam/voiceops
+- The archive intentionally excludes `eval/hidden_cases.csv`; the hidden-case retrieval test needs that separately retained evaluation file to run.

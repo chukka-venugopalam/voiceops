@@ -32,6 +32,7 @@ The runner accepts `--output-dir` (also `--out`) and `--language-code`. For each
 - Step 3 RAG conversation baseline (saved): 96 turns, **99.0%** checks/content, **100.0%** decision/tool-call accuracy, **22/23** fully correct conversations.
 - Step 4 synthetic voice pipeline: **3 turns**, **3 STT + 3 TTS calls**, **0 errors**; the human-request turn created a handoff ticket.
 - Current regression suite: **47 passed**. Focused product/retrieval tests: **23 passed**. Batch runner tests: **4 passed**.
+- Test-packaging note: the 47-test run was verified in the full workspace. This clean archive omits the private `eval/hidden_cases.csv` by design, so `test_hidden_case_evidence_recall_at_seven_is_complete` requires that separately retained file to run.
 - Dataset validator: **PASS** — 9 CSVs, 21 KB documents, 1,000 orders, 1,783 items, 244 logs, 52 questions, 23 conversations.
 - Post-repair rules-only offline questions (52): normal and ASR each scored **100.0% content**, **100.0% decision accuracy**, and **0.989 mean retrieval recall**. These are offline rules metrics, not the Step 1 prompt-only or Step 2 RAG scores.
 - Post-repair offline conversations: **96 turns**, **100.0%** checks, decisions, content, and tool-call accuracy; **23/23** fully correct.
