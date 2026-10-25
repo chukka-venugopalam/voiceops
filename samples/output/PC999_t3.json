@@ -1,0 +1,32 @@
+{
+  "file": "PC999_t3.wav",
+  "conversation_id": "PC999",
+  "turn": 3,
+  "transcript": "please connect me to a human agent",
+  "reply": "I'm sorry for the trouble. I've created a ticket and a human colleague will contact you.",
+  "decision": "escalate",
+  "language": "en",
+  "chunk_ids": [
+    "FAQ-4",
+    "DWM-5",
+    "ESC-1",
+    "DWM-3"
+  ],
+  "tool_calls": [
+    {
+      "tool": "create_ticket",
+      "args": {
+        "order_id": null,
+        "reason": "human_request",
+        "intent": "other"
+      },
+      "ok": true,
+      "ticket_id": "TKT723a263361e44b8d95510c6b0801e67f",
+      "error": null
+    }
+  ],
+  "reply_audio": "PC999_t3.reply.wav",
+  "error": "",
+  "stt_language": "en-IN",
+  "latency_s": 2.77
+}

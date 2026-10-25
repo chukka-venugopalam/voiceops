@@ -1,0 +1,11 @@
+.env
+.venv/
+.cache/
+data_pack/
+eval/results/
+.pytest_cache/
+/output/
+*.tmp
+tools/tickets_created.csv
+__pycache__/
+*.py[cod]

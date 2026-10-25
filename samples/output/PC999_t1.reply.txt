@@ -1,0 +1,1 @@
+I'm ZentroMart's AI support assistant. The return window starts on the delivery date and is counted in calendar days. The category of every product is listed in the `return_category` column of the product catalog.

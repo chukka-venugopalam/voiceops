@@ -1,0 +1,20 @@
+{
+  "file": "PC999_t1.wav",
+  "conversation_id": "PC999",
+  "turn": 1,
+  "transcript": "what is the return window for clothing",
+  "reply": "I'm ZentroMart's AI support assistant. The return window starts on the delivery date and is counted in calendar days. The category of every product is listed in the `return_category` column of the product catalog.",
+  "decision": "answer",
+  "language": "en",
+  "chunk_ids": [
+    "RET-2",
+    "RET-9",
+    "RET-3",
+    "DWM-4"
+  ],
+  "tool_calls": [],
+  "reply_audio": "PC999_t1.reply.wav",
+  "error": "",
+  "stt_language": "en-IN",
+  "latency_s": 3.37
+}

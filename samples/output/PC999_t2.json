@@ -1,0 +1,20 @@
+{
+  "file": "PC999_t2.wav",
+  "conversation_id": "PC999",
+  "turn": 2,
+  "transcript": "does zentromart plus waive the return pickup fee",
+  "reply": "Returns are collected from the delivery address through reverse pickup. A reverse pickup fee of ₹49 applies to change-of-mind returns of clothing, footwear and bags. The fee is waived for ZentroMart Plus members and for any item returned because it was damaged, defective or wrong.",
+  "decision": "answer",
+  "language": "en",
+  "chunk_ids": [
+    "RET-2",
+    "RET-6",
+    "PLS-2",
+    "FAQH-4"
+  ],
+  "tool_calls": [],
+  "reply_audio": "PC999_t2.reply.wav",
+  "error": "",
+  "stt_language": "en-IN",
+  "latency_s": 3.81
+}
