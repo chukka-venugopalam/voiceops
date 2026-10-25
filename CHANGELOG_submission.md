@@ -8,3 +8,5 @@
 - Verified saved baseline steps: Step 1 prompt-only (23.1% content, 88.5% decision) and Step 2 RAG (96.2% content/decision, 0.819 retrieval recall); this sprint made no new LLM calls.
 - Public target repository: https://github.com/chukka-venugopalam/voiceops
 - The archive intentionally excludes `eval/hidden_cases.csv`; the hidden-case retrieval test needs that separately retained evaluation file to run.
+- Documented separate normal LLM-capable and offline rules-only runner commands, supported local configuration names, and the speech-service requirements of each mode.
+- Rebuilt the demo to interleave the existing synthetic customer WAVs with the corresponding already-recorded synthesized agent replies; no new Gnani or LLM calls were made.
