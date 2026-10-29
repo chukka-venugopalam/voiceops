@@ -119,7 +119,7 @@ class Voice:
                 return (r.get("transcript") or "").strip() if isinstance(r, dict) else str(r).strip()
             except Exception as e:
                 last = e; time.sleep(1.0 + a)
-        raise RuntimeError(f"Gnani STT failed: {last}")
+        raise RuntimeError("Gnani STT failed") from last
 
     def transcribe(self, path: str, languages=None) -> dict:
         """Returns {'transcript', 'language_code', 'cached'}. Tries en-IN first (accepts Hindi mixed in), then hi-IN if empty."""

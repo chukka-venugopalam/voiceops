@@ -2,7 +2,7 @@
 %“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 4 0 R
+/F1 2 0 R /F2 3 0 R
 >>
 endobj
 2 0 obj
@@ -17,102 +17,618 @@ endobj
 endobj
 4 0 obj
 <<
-/BaseFont /Symbol /Name /F3 /Subtype /Type1 /Type /Font
+/Contents 12 0 R /MediaBox [ 0 0 612 792 ] /Parent 11 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
 5 0 obj
 <<
-/Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/A <<
+/S /URI /Type /Action /URI (https://github.com/chukka-venugopalam/voiceops)
+>> /Border [ 0 0 0 ] /Rect [ 95.9875 355.2 256.612 365.4 ] /Subtype /Link /Type /Annot
 >>
 endobj
 6 0 obj
 <<
-/Contents 12 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/A <<
+/S /URI /Type /Action /URI (https://github.com/chukka-venugopalam/voiceops/tree/submission/voiceops-final-20261029)
+>> /Border [ 0 0 0 ] /Rect [ 82.294 343.2 219.7645 353.4 ] /Subtype /Link /Type /Annot
 >>
 endobj
 7 0 obj
 <<
-/Contents 13 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/A <<
+/S /URI /Type /Action /URI (https://github.com/chukka-venugopalam/voiceops/pull/1)
+>> /Border [ 0 0 0 ] /Rect [ 100.246 331.2 123.8675 341.4 ] /Subtype /Link /Type /Annot
 >>
 endobj
 8 0 obj
 <<
-/PageMode /UseNone /Pages 10 0 R /Type /Catalog
+/Annots [ 5 0 R 6 0 R 7 0 R ] /Contents 13 0 R /MediaBox [ 0 0 612 792 ] /Parent 11 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 
+  /Trans <<
+
+>> /Type /Page
 >>
 endobj
 9 0 obj
 <<
-/Author (VoiceOps) /CreationDate (D:20261029115759+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261029115759+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
-  /Subject (\(unspecified\)) /Title (VoiceOps 2026 Final Integration Report) /Trapped /False
+/PageMode /UseNone /Pages 11 0 R /Type /Catalog
 >>
 endobj
 10 0 obj
 <<
-/Count 3 /Kids [ 5 0 R 6 0 R 7 0 R ] /Type /Pages
+/Author (VoiceOps) /CreationDate (D:20261029163146+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261029163146+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (VoiceOps 2026 Submission Verification) /Trapped /False
 >>
 endobj
 11 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2984
+/Count 2 /Kids [ 4 0 R 8 0 R ] /Type /Pages
 >>
-stream
-Gb"/)?#SIW(4FN4\1_,u"u\hHhs"(:PBOO,IO3iR?njo49@l'LZD`qNh<_=POKtZm-B8b#rNb&Y85!7Zo'l43ijfa*$5Am-RkFekR_[T\#)pH1"tV#C9Wm;oEq8UnXhu8j,`';[J0[l\OAH/Wo&SO3TkV`7#RJU_R\W1MR\_hD4[8aVZK]1'%:QPqZaUpamt/T_!u@efZ8;UiP6+L/<AMTj[/j$Jqu]WALWPT2ITYiTEq8>QbG2R6k!3H/Xp:L&Y&bAU,RN/DNuR>K+*6T6&=uab`BXM)"!j[6)?uktE;EU9U4i9+`OQabWXA_02pHFnNH'Y2U+0[s/Aa9q9%sCAK+=LRcEhl5[j-0/9KiAu3%SMaU=gl`2ceSNSAY5bDa&UEI!%H[r;-EQjRV."`T6uqO'a9$2j9^3m/<eW?tIHRYU0ZJ_LCq1@>.le/H"Ri)'/;WBRJ)=pug__!:rLW-ZILa:`dObkG&dOKT\0diQG=CFY%-U+%b`eEr&q>h_DU5<iB(4f,`T4n7!0jleNHCT7`Fm'")/-8-8ooXu+Em/Z'g\hAE;ZW5kd7*>:`_Z*H&^)ZG_]e`qe6QG@hT\QVa>Ka%tJNmZmd0Nc,-V:Hq.Es.J'93d<oe.(QI5`9q;.qu*/@G2R]^jp;p1a&e"XAU@GQ+ifSC2HF:MJD"(3KD'^B]mgnW\Ohf;&,q/js/bUeII*XiTf]\Ipd$0Hnhe3>0-hghnL-HTHS:1!<b!S>6D8_AU\j3^p6.NHh!pO=GtC2/KD;0jMHdPboN1K[,s6%\h7RN0'cE[AI_hePg7[l$FQC@CdT&djJ$JV44e>aOK6N+/S&E%fff:2)Nm'Op`[^;Cd/Di7Or#'"lp%gc-\WU90hrSGmP35$Yc7Lq5s.>R?a.D"*T7"ap943nc@IgU@oqG<\@KTX0TYFgcn`"hZA81;9L8s!5`8tnB:^4+"f_ZI^`MU=mTe:2951ZlaI)k*TWqGa$s7f$lRWp&I^]WEeWTqBO%7>=M+iL(T9E;NiA[k.:d!Z+KN.k$<bUY68%]'=r-.I.J*W*Z>n'#5(^?"[:BcT<m02`;nLGG&_&EQEk\c^<!ARAPGL_(F'dn9#)sX!RpqDdA"4Kc4*DF9^=th@"q!@YTi/<<nIgOi[#69BBFss;TY`SMVQt6!:^`aG?nDdX(\j`HZ1,AWFYfu$6t,R&Zjj@+6o;sp6/,2A=XbkSPpdYAUoLlt+-8<OGlf/L,RqV8BE&]C81B4+6D>l<0]j'+_X,;V#4?\6-%<3.ahj!W+Ppl>,YN@rAmLmF[p/iRQ0tS>LSaY$TG9d54gc,P[h_p2JGO4kY!gr**C`LI$'KBPmr)0(g$OfpK[>Baqg#?GHUjVm^;0YiqgQMZR.)qgp?CXNbb[D$D06ohO9BAQhq*>!D>0R?mI%Q@lVEMbeIqo?]6A4d1#^<hIoL_C9(3d^HVs4lboV:$HoGd5E9e(_=1bGPGh3s5p@(aI(8nciZA7Vh(H49W*J_F;md]<!q?=gq`utXO*\mH;Lr#-A%"</)m'U'$:`Jpe?G,'C(5$Jr;m&3&loTdEIa&jl+aXeH%!NBGjc4V*`WMScAa'>VesJ\qP5kCcKATHq_H@Rc5a'Bs.#$u2-R=@fGM641Vk0,>#rg`1i;(:2^/b'g?B*"]`"*:H?jIhk_SO#0(jK]7@M0qXjq7sCU!WPPU7`g"1\ZU[bTkum_jUBgD[nc"F6p!ars*&VgPPLPY-9X1fm;eX$"7i71Bih?#a1mu[b5<@A,>SP>1U!EZKHbqV$0KLD,Z`shcVf0*+BDc0Eqmd578tMg?uVVFOpYE43c^.c*(^^SA@F=JjSRYf5W#`2N:o)0(%I:QJZEBrO3jSFF$45H)!fW#BO>D*8D>'$tU')+iuLb%\ZRNb^rKFGYk5A9"RHdFAR3Omm25USp']KS;^ZF]@^X9YQ,nK=Ff,DVo*%7)n"9h==D]<of6"=\W2h(c+q4[HQ,*2k;OHig!r:gE/ilL27V9<?YFprW"6'>@"_FhLW;(od)cD<Sr:j-I\9:P!VbGr"g[]5L+Z`e.0d!m81s.*QJa^:/Po`alG9o"i$1jd4P6GUqRf8YAMj7R#(F&A2C[%C2<HMALkW%>RBZg7#L7,`*l.p$@]UIUKbX,N)/6`m?c`&;]E=)8](G5a(BS<dbC<M0QQl$HP\FVYTM(\Q3I5g4A.ZI4U6PB>)%29k.7mZg&;bmZp#596in_;pn!<`"#m^pFs%E8[P\0N?[V$b?,0#ZdmZWaZ,Ye8i\DMbf$9;ORo&FD07L9H*EXYg;n2:fcL[4Y3k.$lZqVp=KVAr^`G;S!jD3bh.C,\`XnJi5AC,\KiYN@oum,@cgT;iC)kFY0MIN26*6-=DQfY_hI5)U0RBWU,^@)ZIeo?X2P0bf&VOlK="n5?uqaMG93a,iHlr;XEUB8j8mo^]XF%-g!L/Xa8^.h(]+86\Q.p"gDfJPP6K>.m2i$A1@qgjXNi=4jA,=e(R-V8642c</FpGj5/W!X`4*e6]GkZaR)5.C^nIU(`[k\uTqW>#`Lk)1Ym@mBm(GG8K2cp6',:>4(l!Uif9s<aPBEpRT%^Q%TD$KScrf<K6IT_kNXCk6S9l$<*j=rhS>>_XZCN#c:_([9#r-Q<q6aT\/u('El-fmjmL]53V;<");RIYHSjhBk0*0C<9a%pHr_7rCMpM]n6Lg]n8Lmh]eVFPen,I8tuJt&DXe>aDFi3k-)$s6`#)3D/8;Om5*g'b"1GH8dCGZmj_2Vc.<S9QKko4qhuKo#9[?;1"'03AYgfGp706MZhY`dc(fc_QWSe81h7(pV+MHP=B/*dqn*GjalLIhZ+Y`):oS3rpj*02QAn3LNi.(:@At^[s17t?`:,W!-'Y8X@5(j%Bpcd)0E2('MZ&tC5YI=o"&enH2TpWdVonN9F7`Q2c6THUg3i@o\Ih?6S(a!9H3^'J''3_VAI6?lW-/-J8iuhh*9ppJ64>7A"bh)O:B~>endstream
 endobj
 12 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 674
+/Length 6657
 >>
 stream
-Gat%^95iQ=&;9NK'm!%V8(#6#qU>L_056:j3qbn(CPe$=.bp<Fo[anD&gMf)75$bo_qF!tP9WGLHouNV>Z\H3O<ZDT*K\Ur3N=%bWoPn&1cZ=s=t\rKM:H(#QE)QlmZPU9rlbr=jLTZGMeB:]eW#TYdBJFM(X`lki/cGc5jRa)%/@q96YmVk.``%b+^S-+Wk*ruTro2d$3]`$-Y/keEq1[IWsU5n0-W1@:(t9-9oaf<12g!;6hM32dho>.g_8oVar)1`D9:^HV1A[uB>simK=esVm:[;f%pM"($-KL_[MK3t(KcE7\fD3I'R.J_/+:Kj4D7H"`[D*<iG!Y!&E?M![kAo+'<6ZtlQ(X\XK.u,IFkqRPePr0<QUTgb?o6'M_s<B2\V3.>;(ob!qB3t=sGW*brV?o!GF4X.?Kl@T_/TSZSWAF8YmBS&,bl1bB<V1`W)0sC*M?q\QBW6E=_!D$DCPFA7j3f80RCJ(+<#Jfnp;9?]1XdZsKeV`7]G75R)RMeC",Simsm47tOkA5]YsRm%)Sp@6?p7GXlC->.#s.huiZT>=Zo(\l#Vj@soHR'Q;quJ^@=Tps;J)]5CEa6rBasl)<=@PKq4KYXHa<LSGONhLBng9fD1^B=fa5DE^>qi]@mUqH=><=m]^)%mIp#0HgjbIr>UUT8ssDa8~>endstream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.843137 .878431 .894118 RG
+n 44.64 34.56 m 567.36 34.56 l S
+BT /F1 7 Tf 8.4 TL ET
+.356863 .407843 .439216 rg
+BT 1 0 0 1 44.64 22.32 Tm (VOICEOPS 2026  |  VERIFIED SYNTHETIC SPEECH CHECKS) Tj T* ET
+BT 1 0 0 1 545.177 22.32 Tm (Page 1) Tj T* ET
+Q
+q
+1 0 0 1 50.64 719.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 5 Tm /F2 22 Tf 27 TL (VoiceOps 2026) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 701.4 cm
+q
+.356863 .407843 .439216 rg
+BT 1 0 0 1 0 4 Tm /F1 9 Tf 13 TL (Submission verification report | 29 October 2026) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 679.4 cm
+q
+.031373 .494118 .545098 rg
+BT 1 0 0 1 0 3 Tm /F2 9 Tf 12 TL (SPEECH CHECKS: PASS | PUBLIC-PACKAGE GATE: PASS WITH ONE PRIVATE-INPUT TEST DESELECTED) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 649.4 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 15.5 Tm /F1 8.5 Tf 12 TL (This report documents measured offline validation and the latest bounded synthetic-audio smoke test. It does not claim a guaranteed) Tj T* (competition score, a fix for the historical STT failure, browser microphone validation, or complete production end-to-end verification.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 626.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Verification gates) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 517.4 cm
+q
+.090196 .196078 .301961 rg
+n 0 104 482.4 -19 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 90 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Gate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 124.8 90 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Observed result) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 71 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Public-package tests) Tj T* ET
+Q
+Q
+q
+1 0 0 1 124.8 62 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 10.8 Tm /F1 7.2 Tf 9 TL (69 passed, 1 deselected. The deselected test requires eval/hidden_cases.csv, intentionally excluded. The) Tj T* (unfiltered suite is not reported as passing.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 43 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Python compilation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 124.8 43 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Passed \(exit 0\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 24 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Dataset validator) Tj T* ET
+Q
+Q
+q
+1 0 0 1 124.8 24 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Passed \(exit 0\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 5 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Gnani synthetic-clip smoke test) Tj T* ET
+Q
+Q
+q
+1 0 0 1 124.8 5 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (STT passed with one request; TTS passed with one request.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.792157 .835294 .854902 RG
+.35 w
+n 0 104 m 482.4 104 l S
+n 0 0 m 482.4 0 l S
+n 0 0 m 0 104 l S
+n 482.4 0 m 482.4 104 l S
+n 0 85 m 482.4 85 l S
+n 0 57 m 482.4 57 l S
+n 0 38 m 482.4 38 l S
+n 0 19 m 482.4 19 l S
+n 118.8 0 m 118.8 104 l S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 512.4 cm
+Q
+q
+1 0 0 1 50.64 489.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Recorded evaluation metrics) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 356.4 cm
+q
+.031373 .494118 .545098 rg
+n 0 128 482.4 -17 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 115 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Evaluation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 115 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Content / decision / checks) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 115 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Recall) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 98 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Offline normal \(52\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 98 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (100% / 100%) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 98 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.968) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 81 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Offline ASR-text \(52\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 81 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (100% / 100%) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 81 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.968) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 64 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Offline conversations \(23; 96 turns\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 64 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (23/23 fully correct; 100% checks) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 64 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.944) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 47 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Latest bounded RAG normal) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 47 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (98.1% content; 96.2% decision) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 47 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.968) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 30 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (Latest bounded RAG ASR-text) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 30 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (100% content; 94.2% decision) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 30 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.968) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 10.8 Tm /F1 7.2 Tf 9 TL (Latest bounded RAG conversations \(96) Tj T* (turns\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 159.8 13 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (100% checks; 23/23 fully correct) Tj T* ET
+Q
+Q
+q
+1 0 0 1 433.4 13 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (0.944) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.792157 .835294 .854902 RG
+.35 w
+n 0 128 m 482.4 128 l S
+n 0 0 m 482.4 0 l S
+n 0 0 m 0 128 l S
+n 482.4 0 m 482.4 128 l S
+n 0 111 m 482.4 111 l S
+n 0 94 m 482.4 94 l S
+n 0 77 m 482.4 77 l S
+n 0 60 m 482.4 60 l S
+n 0 43 m 482.4 43 l S
+n 0 26 m 482.4 26 l S
+n 154.8 0 m 154.8 128 l S
+n 428.4 0 m 428.4 128 l S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 351.4 cm
+Q
+q
+1 0 0 1 50.64 328.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Known retrieval regression) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 286.4 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 27.5 Tm /F1 8.5 Tf 12 TL (Compared with the verified saved baseline, normal and ASR offline recall declined from 0.989 to 0.968; conversation recall declined) Tj T* (from 1.000 to 0.944. Completed rollback experiments did not recover the baseline. Accuracy and conversation correctness remain as) Tj T* (listed above. A previous ASR RAG attempt ended in provider transport failure and offline fallback; it is invalid RAG evidence.) Tj T* ET
+Q
+Q
+ 
+endstream
 endobj
 13 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 1070
+/Length 4674
 >>
 stream
-Gasam?#SIW&:F5UR)ehAb>t,d#O$f0\:G/N410c+'Eno6>YAl];B]+6r9k/\*FCEId(Bo&[+^r$R:V*rL<-r)<kt%AK<H/u;rh.nBB^<)HVF%f;f?$,iB0b'k@^P%/hbQ"dH*'7XEm[UFEhqJH?kN-)da",YE4d!j/_,VI*qhS*rt;GNkE6elRB,:#B:IZ:6nk+V])Nng1]>/=9VKT6m,$5R4O+haF>B5/$f!%qt=5`VqE"Ys+;>O,Ar`gh[(8mnG$u/?f:!Ra/-,oBEE`X6LES^P)NFgDM/&D<dSI0ZCGB9!t/UHFC8!C<0L<mV5AdFG835'2;2!1%Oo/3MAp3;\nF2lH;\9V$PQp<'ZTKGKq2lb!C\RX=-N*bB1iR\fbRe/#X;+d@jiAMlV59mIXXm5>79?@Njd\[NOFMeBI5iW0(F?E]9t8m<pTQj4e7(0h_-=cT<mU7Grs+qX(f;^SLm]#D->Tpm(.@4YR&2:c>h9X;Km1K^PYf$)#^?Hb6.TVGq4hSJt:dTf`-!qgjc-mTfT<".IM?5c+MSa4C[=Ni<`BM@@.C+kDoZT&DGh0"0i]'hSeF(oQU,`a79e#I846$?-qs9mM[Bm*NfX"6?Cgr;X(34/=X[Md;R,bKr]n>eY%%gP,gg/eVgd(T1P#la!rb,\/V-p<&t0L/:Pea@XJ92"hiDT9?e$f\EB7.c96K9VGS&=9I8M_dYk&=6cn(j-:lm>7A2_ep%@P,lTupH[8LNY7A0EF7eL')0OdDS$ami.SP/a)[?u^P;TLVZ7T1aTJ((?J(ku!U4sVhb#RNCU4uRO_U;0aYc3s[0QAA"EQQhGUe1if9%TX'#T_?lMf*&F4-gA8fKs7mg&o3>]PSRP+jX>68U;15JF==u%i%E$TnX_;lc3gVWb4@6I8,-8@5jAHV]?(!<E-A`$h`Io,<$U8r.tq!Zjs1seJYE`_==-pjf%.jS%FTNZ(DKg,pO`u-\;B%%!bV%n`BOn-dsS`uc1C2UEg"`ao6!6&jXY.<MKfFsfh/:T.Os;%;%cEEUWI#O>%0M&l`Qgl&YO!MPOI[dhS3!NoeZ~>endstream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.843137 .878431 .894118 RG
+n 44.64 34.56 m 567.36 34.56 l S
+BT /F1 7 Tf 8.4 TL ET
+.356863 .407843 .439216 rg
+BT 1 0 0 1 44.64 22.32 Tm (VOICEOPS 2026  |  VERIFIED SYNTHETIC SPEECH CHECKS) Tj T* ET
+BT 1 0 0 1 545.177 22.32 Tm (Page 2) Tj T* ET
+Q
+q
+1 0 0 1 50.64 719.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 5 Tm /F2 22 Tf 27 TL (Speech integration and limitations) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 701.4 cm
+q
+.356863 .407843 .439216 rg
+BT 1 0 0 1 0 4 Tm /F1 9 Tf 13 TL (Bounded test on the bundled prerecorded synthetic demo; provider retries were disabled.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 676.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Observed speech results) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 614.4 cm
+q
+.090196 .196078 .301961 rg
+n 0 57 482.4 -19 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 43 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Operation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 63.6 43 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Result) Tj T* ET
+Q
+Q
+q
+1 0 0 1 434.4 43 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 1.8 Tm /F2 7.2 Tf 9 TL (Requests) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 24 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (STT) Tj T* ET
+Q
+Q
+q
+1 0 0 1 63.6 24 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (PASS: provider returned a nonempty transcript. Transcript content was not printed or retained in this report.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 434.4 24 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (1) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 5 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (TTS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 63.6 5 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (PASS: generated WAV was readable and nonempty \(2.24 seconds; 215,084 bytes\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 434.4 5 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 1.8 Tm /F1 7.2 Tf 9 TL (1) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.792157 .835294 .854902 RG
+.35 w
+n 0 57 m 482.4 57 l S
+n 0 0 m 482.4 0 l S
+n 0 0 m 0 57 l S
+n 482.4 0 m 482.4 57 l S
+n 0 38 m 482.4 38 l S
+n 0 19 m 482.4 19 l S
+n 57.6 0 m 57.6 57 l S
+n 428.4 0 m 428.4 57 l S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 609.4 cm
+Q
+q
+1 0 0 1 50.64 567.4 cm
+q
+.14902 .196078 .219608 rg
+BT 1 0 0 1 0 27.5 Tm /F1 8.5 Tf 12 TL (The STT input was normalized to mono 16-bit PCM at 16 kHz; measured duration was 12 seconds and RMS was 3912.6. Installed SDK) Tj T* -0.020591 Tw (was gnani-vachana 0.8.2. The historical STT failure was not reproduced, and its root cause is not established. No claim is made that the) Tj T* 0 Tw (earlier failure is fixed.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 544.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Scope and remaining limitations) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 514.4 cm
+q
+BT 1 0 0 1 0 15.5 Tm 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (\177 The smoke check used prerecorded synthetic audio. Browser microphone behavior, customer audio, and full production end-to-end) Tj T* (operation were not tested.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 484.4 cm
+q
+BT 1 0 0 1 0 15.5 Tm 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (\177 One hidden-case-dependent pytest test was deselected because its private input is excluded. Do not describe the unfiltered test suite) Tj T* (as passing.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 454.4 cm
+q
+BT 1 0 0 1 0 15.5 Tm 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (\177 Embedding retrieval was not validated with a confirmed embedding model. The diagnostic held-out set was highly templated and is) Tj T* (weak evidence of general retrieval quality.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 424.4 cm
+q
+BT 1 0 0 1 0 15.5 Tm 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (\177 The candidate retains the measured retrieval-recall reduction. No offline evaluations were rerun for this speech update; previously) Tj T* (recorded results are reproduced above.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 394.4 cm
+q
+BT 1 0 0 1 0 15.5 Tm -0.091147 Tw 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (\177 Credentials, datasets, hidden labels, raw evaluation results, caches, request ledgers, temporary audio, logs, and backups are excluded) Tj T* 0 Tw (from the submission package.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 371.4 cm
+q
+.090196 .196078 .301961 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Code and release references) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 329.4 cm
+q
+BT 1 0 0 1 0 27.5 Tm 12 TL /F1 8.5 Tf .14902 .196078 .219608 rg (Repository: ) Tj .031373 .494118 .545098 rg (github.com/chukka-venugopalam/voiceops) Tj .14902 .196078 .219608 rg  T* (Branch: ) Tj .031373 .494118 .545098 rg (submission/voiceops-final-20261029) Tj .14902 .196078 .219608 rg  T* (Pull request: ) Tj .031373 .494118 .545098 rg (PR #1) Tj T* ET
+Q
+Q
+ 
+endstream
 endobj
 xref
 0 14
 0000000000 65535 f 
 0000000061 00000 n 
-0000000112 00000 n 
-0000000219 00000 n 
-0000000331 00000 n 
-0000000408 00000 n 
-0000000613 00000 n 
-0000000818 00000 n 
-0000001023 00000 n 
-0000001092 00000 n 
-0000001392 00000 n 
-0000001464 00000 n 
-0000004540 00000 n 
-0000005305 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000516 00000 n 
+0000000706 00000 n 
+0000000936 00000 n 
+0000001134 00000 n 
+0000001359 00000 n 
+0000001428 00000 n 
+0000001728 00000 n 
+0000001794 00000 n 
+0000008503 00000 n 
 trailer
 <<
 /ID 
-[<69d576f316657b1fe1583db53fa336b2><69d576f316657b1fe1583db53fa336b2>]
+[<559a56fb6e2e102ad7b354965c5f4ede><559a56fb6e2e102ad7b354965c5f4ede>]
 % ReportLab generated PDF document -- digest (opensource)
 
-/Info 9 0 R
-/Root 8 0 R
+/Info 10 0 R
+/Root 9 0 R
 /Size 14
 >>
 startxref
-6467
+13229
 %%EOF
