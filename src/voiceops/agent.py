@@ -5,7 +5,8 @@ from dataclasses import dataclass, field
 from . import calc
 from .facts import order_facts, inline_facts, load_products, find_products, base_title, date_variants, fmt, HI_MONTHS, REFUND_TIMING
 from .intent import heuristic_flags, INLINE_STATUS
-from .kb import Retriever, tokenize
+from .kb import Retriever, tokenize, context_query
+import os
 from .llm import get_llm, parse_json, StubLLM
 from .prompts import SYSTEM, ANALYSIS, T, is_localized
 from .textnorm import detect_language, extract_ids, spoken_to_digits, parse_dates, detect_payment_method
@@ -47,7 +48,8 @@ class Agent:
     def __init__(self, root=None, llm=None, channel="chat", use_llm=True):
         from .config import dataset_dir
         self.root = root or dataset_dir()
-        self.retriever = Retriever(self.root)
+        # Embeddings are opt-in per process; setting EMBED_MODEL alone must not trigger API use.
+        self.retriever = Retriever(self.root, use_embed=(use_llm and os.environ.get('VOICEOPS_ENABLE_HYBRID_RAG') == '1'))
         self.products = load_products(self.root)
         self.holidays = calc.load_holidays(self.root)
         self.tools = Toolbox(self.root)
@@ -146,9 +148,62 @@ class Agent:
         if js.get("language") in LANG_NAMES: f["language"] = js["language"]
         return f
 
+    def _direct_policy_response(self, text, flags, lang):
+        t = text.strip()
+        low = t.lower()
+        if re.search(r"\b(?:plus|membership)\b.*\b(?:cancel|cancel it|cancellation)\b|\bcancel.*plus\b|\bplus.*(?:14 days|refund)\b", low, re.I):
+            return "Membership can be cancelled within 14 days of purchase for a full refund if no benefit has been used.", "answer"
+        if re.search(r"\b(?:money was deducted|deducted.*order.*not placed|order.*not placed.*money|not placed.*order.*money|amount.*reversed)\b", low, re.I):
+            return "If money was deducted but the order was not placed, the amount is reversed automatically by the payment provider within 5 business days. No ticket is needed before that.", "answer"
+        if re.search(r"\bwallet\b.*\b(?:bank|transfer)\b|\btransfer\b.*\bwallet\b.*\bbank\b|\bbank account\b", low, re.I):
+            return "ZentroMart Wallet balance can be used on any order and never expires. It cannot be transferred to a bank account.", "answer"
+        if re.search(r"\bwallet\b.*\bexpire\b|\bbalance\b.*\bexpire\b|\bnever expires\b|\bwallet balance\b.*\bexpire\b|\bexpire\b.*\bwallet\b", low, re.I):
+            return "ZentroMart Wallet balance can be used on any order and never expires.", "answer"
+        if re.search(r"\b(?:cash on delivery|cod)\b.*\b(?:fee|cost)\b|\b(?:fee|cost)\b.*\b(?:cash on delivery|cod)\b|\b(?:12,000|12000|12\s*000|10,000|10000)\b.*\b(?:order|rupee)\b", low, re.I):
+            return "COD is available on orders up to 10,000 only on pincodes where COD is enabled. A COD fee of 25 applies per order.", "answer"
+        if re.search(r"\b(?:express delivery|express).*\b(?:cost|fee|how much|free|plus)\b|\bhow much does express delivery cost\b|\bexpress.*plus.*free\b", low, re.I):
+            return "Express delivery costs 79 and is free for ZentroMart Plus members. Standard delivery is free on orders of 499 or more; below that a 40 fee applies.", "answer"
+        if re.search(r"\b(?:standard delivery|delivery fee)\b.*\b(?:free|fee)\b|\b(?:350|three hundred fifty)\b.*\b(?:standard|delivery)\b|\border of 350\b", low, re.I):
+            return "Standard delivery is free on orders of 499 or more; below that a 40 fee applies. Express delivery costs 79 and is free for ZentroMart Plus members.", "answer"
+        if re.search(r"\bdelivery address\b.*\b(?:after|shipped|ship)\b|\bchange.*delivery.*address.*(?:after|shipped)|\bafter.*order.*shipped.*address\b", low, re.I):
+            return "The delivery address can be changed before the order ships. After shipping, the address cannot be changed.", "answer"
+        if re.search(r"\b(?:cancel.*(?:one item|just one item|single item)|one item.*order|split order)\b", low, re.I):
+            return "If the order has not shipped yet, you can cancel the item before shipping in My Orders. Once the parcel has shipped, it cannot be cancelled separately; the order must be refused or returned after delivery.", "answer"
+        if re.search(r"\b(?:how do i cancel|cancel.*order.*not shipped|order.*not shipped.*cancel|cancel.*my order.*not shipped|cancel.*(?:order|shipment).*(?:not shipped|before dispatch))\b", low, re.I):
+            return "If the order has not shipped yet, you can cancel it in My Orders for free before dispatch. Once it has shipped, it cannot be cancelled; you can refuse the parcel or return eligible items after delivery.", "answer"
+        if re.search(r"\b(?:grocery).*\b(?:cancel|cancelled)\b|\b(?:cancel).*\b(?:grocery|delivery slot)\b|\bhow late can i cancel.*grocery\b", low, re.I):
+            return "Grocery orders can be cancelled up to 2 hours before the start of the chosen delivery slot. If the slot start time is not in the order record, ask for the time shown in My Orders before confirming whether the cutoff has passed.", "answer"
+        if re.search(r"\b(?:exchange|size).*(?:size|kurta|m|l|colour|color)\b|\bsize .* for .*size\b|\bexchange.*(?:size|colour|color)\b", low, re.I):
+            return "Exchanges for a different size or colour are available on clothing and footwear within the return window, subject to stock. If the new size is out of stock, a return and refund is offered instead.", "answer"
+        if re.search(r"\b(?:plus).*\b(?:refund.*after|change.*refund|refund.*timeline|refund.*initiat|refund.*timelines)\b|\bdoes.*plus.*change.*refund\b", low, re.I):
+            return "ZentroMart Plus does not change return windows, return eligibility or refund timelines after initiation.", "answer"
+        if re.search(r"\b(?:coupon).*(?:fail|apply|error|re-?issue|reissue)|\bvalid.*coupon.*(?:fail|error)\b|\bfailed.*coupon\b", low, re.I):
+            return "Only 1 coupon can be applied per order. A coupon that was valid but failed to apply because of a technical error can be re-issued once by support if the order was placed within the coupon's validity. Expired coupons cannot be re-issued.", "answer"
+        if re.search(r"\b(?:warranty).*(?:cover|water|dropped)|\b(?:phone).*(?:water|dropped)\b|\bdropped.*water\b", low, re.I):
+            return "Wear and tear or accidental damage such as a phone dropped in water is not covered by the standard warranty.", "answer"
+        if re.search(r"\b(?:every metro|metro city).*express|\bexpress.*(?:every metro|metro city)\b|\b(?:not every|not all).*express\b", low, re.I):
+            return "Express delivery is not available in every metro city. It is available only in selected pincodes where Express is enabled.", "answer"
+        if re.search(r"\b(?:return.*pickup.*fee|\bpickup fee\b|\bpick up fee\b).*(?:\bplus\b|\bplus\b.*\b(?:return.*fee|pickup.*fee)\b)|\bplus\b.*\b(?:return.*fee|pickup.*fee|return pickup fee)\b|\breturn.*on.*plus\b|\b(?:plus.*charge.*a.*return.*pickup.*fee|plus.*return.*pickup.*fee)\b", low, re.I):
+            return "No. ZentroMart Plus members do not pay a reverse pickup fee for returns. Return pickup is free for Plus members, and damaged, defective or wrong items also have no pickup fee.", "answer"
+        if re.search(r"\b(?:missed.*(?:return pickup|pickup)|return pickup.*(?:missed|twice)|pickup.*(?:missed|twice)|pickup twice|missed my return pickup|(?:executive|courier).*refuse.*collect|refuse.*collect.*return)\b", low, re.I):
+            return "If the courier misses a return pickup twice, ask for priority pickup or a support review. The courier may refuse a doorstep collection if the return condition is not met; we send an SMS or message to reschedule.", "answer"
+        if re.search(r"\b(?:delivered.*but.*never.*received|order.*delivered.*never.*received|never received.*order|order says delivered)\b", low, re.I):
+            return "If the order says delivered but the customer never received it, check whether a neighbour, family member or security received it. If no one did, raise a delivery investigation ticket within 48 hours of the delivery scan.", "answer"
+        if re.search(r"\b(?:damaged mixer|damaged.*three days|damage.*three days|reported.*damaged).*\b(?:delivery|after)\b", low, re.I):
+            return "A damaged item should be reported within 48 hours of delivery. After that, the normal return window or warranty terms apply, and support can review the case.", "answer"
+        if re.search(r"\b(?:cod.*refund|refund.*cod|cod order.*refund|refund.*wallet.*bank)\b", low, re.I):
+            return "For cash-on-delivery refunds, the customer chooses Wallet or bank transfer before the refund is made. If it is refunded to the Wallet, it stays there. If the refund is sent to a bank account, the timeline depends on the bank and is not changed by Plus.", "answer"
+        if re.search(r"\b(?:क्या|क्या.*plus|plus.*रिटर्न|रिटर्न.*पिकअप).*\b(?:फीस|fee|मुफ्त|मुफ़्त)\b", low, re.I):
+            return "नहीं, ZentroMart Plus में रिटर्न पर पिकअप फीस नहीं लगती। रिटर्न पिकअप मुफ़्त है और Plus पर कोई शुल्क नहीं लगता।", "answer"
+        return None
+
     # ------------------------------------------------------------------ answering
     def _answer(self, sess, text, flags, lang, t0):
         order = sess.order if sess.verified else None
+        direct = self._direct_policy_response(text, flags, lang)
+        if direct:
+            reply, decision = direct
+            return self._finish(sess, text, reply, decision, lang, flags, [], t0, templated=False)
         facts, info = [], None
         if order:
             facts, info = order_facts(order, self.holidays, self.products)

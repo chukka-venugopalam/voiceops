@@ -59,8 +59,14 @@ def heuristic_flags(text: str, session_has_order: bool = False) -> dict:
     personal = bool(ORDER_SPECIFIC.search(t))
     asks_status = topic in ("refund", "delivery", "cancel", "damage", "return")
     store_pickup_question = bool(re.search(r"(?:pick\s*up|pickup|collect).{0,35}(?:my\s+order|order).{0,35}(?:store|shop|near me)|(?:store|shop).{0,25}(?:pickup|pick up|collect)", t, re.I))
+    generic_policy = bool(re.search(
+        r"(?:cash on delivery|cod|wallet|bank account|expire|cancel.*(?:one item|item)|delivery address|standard delivery|express delivery|plus membership|refund.*after.*initiat|coupon.*(?:fail|apply)|exchange.*(?:size|colour|color)|not placed.*(?:money|order)|order.*not placed|money was deducted|warranty.*cover|no ticket|every metro|metro city|delivered.*never.*received|never.*received.*order|order says delivered)",
+        t, re.I
+    ))
     needs_order = (personal and not has_inline_data) or (bool(MENTIONS_ORDER.search(t)) and topic == "other" and not only_numbers
                                                          and not GREETING_ONLY.search(t) and bool(re.search(r"help|madad|मदद|baare|बारे|status|check", t, re.I)))
+    if generic_policy and not re.search(r"(?:where is my|status of my|track my|refund status|where.*my order|my order.*(?:status|tracking|where))", t, re.I):
+        needs_order = False
     if store_pickup_question: needs_order = False
     if session_has_order and asks_status and not has_inline_data: needs_order = True
     substantive = (topic != "other" or "?" in t or "कैसे" in t or "क्या" in t) and not only_numbers

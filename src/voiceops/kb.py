@@ -4,6 +4,7 @@ from collections import Counter
 from .config import dataset_dir
 from .facts import find_products, load_products, _normalize_spoken_numbers
 from .textnorm import parse_dates
+from .embed import rrf_fuse
 
 HEAD = re.compile(r"^## \[([^\]]+)\]\s*(.*)$", re.M)
 DOC_WEIGHT = {"policy": 1.0, "agent_guide": 0.95, "help": 0.9, "meta": 0.8, "faq": 0.7, "marketing": 0.45, "catalog": 0.9}
@@ -19,6 +20,7 @@ HI_MAP = {
     "एड्रेस": "address", "पता": "address", "फीस": "fee", "फ़ीस": "fee", "मुफ़्त": "free", "मुफ्त": "free",
     "कैश ऑन डिलीवरी": "cash on delivery cod", "वॉलेट": "wallet", "बैंक": "bank", "बदल": "change",
     "kaam nahi": "not working troubleshooting", "kharab": "damaged", "toota": "damaged", "galat": "wrong",
+
 }
 
 STOP = set("""a an the is are was were be been am do does did can could i me my mine you your we our it its of to in on at for with
@@ -91,14 +93,58 @@ def expand_query(q: str) -> str:
 
 TIME_WORDS = re.compile(r"refund|days?|date|when|how long|how soon|how fast|timeline|business|kab|tak|कब|कितने|दिन|तारीख", re.I)
 
+_ID_LIKE = re.compile(r"\b[A-Za-z]{2,5}[-_ ]?\d{2,}\b|\d+")
+_NONTOPIC = set("last four digits digit pincode pin phone number mobile order id yes yeah okay ok sure thanks thank correct right hello hi".split())
+
+def content_tokens(text):
+    """Topic words of a customer message: IDs, SKUs, digit strings and bare confirmations do not count."""
+    return [w for w in tokenize(_ID_LIKE.sub(" ", text)) if w not in _NONTOPIC and len(w) > 2]
+
+def context_query(history, n=1):
+    """Latest n customer turn(s) that carry a topic, oldest first. A follow-up such as 'and for COD?' needs the earlier
+    question, and the immediately previous turn is often just an order ID or the 4 verification digits."""
+    out = []
+    for role, msg in reversed(history):
+        if role == "customer" and content_tokens(msg):
+            out.append(msg)
+            if len(out) == n: break
+    return " ".join(reversed(out))[:300]
+
 class Retriever:
     """Policy and catalog are ranked separately so product rows cannot crowd out policy sections."""
-    def __init__(self, root=None):
+    def __init__(self, root=None, use_embed=False):
         self.root = root or dataset_dir()
         self.chunks = load_chunks(self.root)
         self.by_id = {c["id"]: c for c in self.chunks}
         self.products = load_products(self.root)
         self.index = BM25([c["title"] + " " + c["title"] + " " + c["text"] for c in self.chunks])
+        self.embed, self.embed_errors = None, 0
+        if use_embed:
+            try:
+                from .embed import EmbedIndex
+                pol = [c for c in self.chunks if c["doc_type"] != "catalog"]
+                self.embed = EmbedIndex.from_env([c["id"] for c in pol], [c["title"] + ". " + c["text"] for c in pol])
+            except Exception:
+                self.embed = None
+
+    EMBED_TOP = 12
+
+    def _fuse(self, out, query):
+        """Fuse policy rankings only; existing evidence-preference and catalog logic remains authoritative."""
+        if not self.embed: return out
+        try:
+            hits = self.embed.rank(query, top=self.EMBED_TOP)
+        except Exception:
+            self.embed_errors += 1
+            if self.embed_errors >= 3: self.embed = None
+            return out
+        pol = [(score, chunk) for score, chunk in out if chunk["doc_type"] != "catalog"]
+        cat = [(score, chunk) for score, chunk in out if chunk["doc_type"] == "catalog"]
+        bm = [chunk["id"] for score, chunk in pol if score > 0][:30]
+        em = [cid for cid, _ in hits]
+        fused = rrf_fuse([bm, em])
+        pol = sorted(((fused.get(chunk["id"], 0.0) * 100, chunk) for _, chunk in pol), key=lambda x: -x[0])
+        return sorted(pol + cat, key=lambda x: -x[0])
     def _ranked(self, query):
         raw = self.index.scores(expand_query(query))
         out = []
@@ -114,7 +160,7 @@ class Retriever:
             w = DOC_WEIGHT.get(c["doc_type"], 0.8) * superseded_weight
             out.append((s_ * w, c))
         out.sort(key=lambda x: -x[0])
-        return out
+        return self._fuse(out, query)
 
     def _evidence_ids(self, query, products):
         low = expand_query(query).lower()

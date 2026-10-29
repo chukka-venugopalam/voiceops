@@ -79,6 +79,14 @@ def test_keyword_rules_beat_an_overeager_llm_on_general_questions():
     r = a.respond(a.new_session(), "How long does a refund to UPI take?")
     assert r["decision"] != "clarify" and "order ID" not in r["reply"]
 
+def test_plus_return_pickup_fee_falls_into_fixed_policy_answer():
+    a = Agent(use_llm=False)
+    r = a.respond(a.new_session(), "Does ZentroMart Plus charge a return pickup fee?")
+    assert r["decision"] == "answer"
+    text = r["reply"].lower()
+    assert "plus" in text and "free" in text and "no" in text
+
+
 def test_computed_refund_date_is_appended_when_llm_omits_it():
     a = Agent(llm=_Eager())
     r = a.respond(a.new_session(), "My refund to credit card was started on 17 October 2026. By which date will it arrive?")

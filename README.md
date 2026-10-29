@@ -1,66 +1,94 @@
-# VoiceOps 2026 - ZentroMart Voice Support Agent
+# VoiceOps 2026 - ZentroMart voice support agent
 
-This package contains the VoiceOps source, `report.pdf`, `demo.mp4`, and three synthetic sample turns. The capstone dataset is separate and is not included.
+VoiceOps is a voice-capable support agent for the fictional store ZentroMart. It combines section-based document retrieval, deterministic business rules, conversation state, escalation/ticket workflows, optional LLM response wording, and Gnani speech input/output.
 
-Public repository: https://github.com/chukka-venugopalam/voiceops
+**Release status:** the latest bounded synthetic-clip smoke test passed STT (one request, nonempty transcript) and TTS (one request, readable nonempty WAV). The earlier STT failure was not reproduced; its historical root cause is not established. Browser microphone behavior and full production end-to-end integration are not verified. This is a tested submission candidate, not a guarantee of a competition score.
 
-## Install and configure
+## Repository and submission links
 
-Use Python 3.9 or newer. Extract the supplied dataset folder containing `kb/`, `data/`, `practice/`, and `tools/` separately, then in PowerShell:
+- Repository: https://github.com/chukka-venugopalam/voiceops
+- Submission branch: https://github.com/chukka-venugopalam/voiceops/tree/submission/voiceops-final-20261029
+- Pull request: https://github.com/chukka-venugopalam/voiceops/pull/1
+
+The submission candidate is on the branch above. The repository's default `main` branch may not show this exact candidate until its pull request is merged.
+
+## Contents
+
+- `src/voiceops/`: agent flow, retrieval, business facts/calculations, language handling, LLM adapter, speech integration.
+- `run.py`: batch runner for audio or text inputs.
+- `chat.py`, `demo_server.py`: text chat and local demo interface.
+- `eval/`: question/conversation evaluators and retrieval diagnostics.
+- `tests/`: offline unit and regression tests.
+- `report.pdf`: technical submission report.
+- `demo.mp4`: previously recorded synthetic demo asset; it is not evidence that the latest STT smoke test passed.
+- `submission_manifest.json`: SHA-256 hashes and sizes for all other files in this ZIP.
+
+The capstone dataset is separate and is deliberately not included. It contains the `kb/`, `data/`, `practice/`, and `tools/` directories, plus `validate_dataset.py` at its root.
+
+## Setup (Windows PowerShell)
+
+Use Python 3.9 or newer. Extract the project and install the listed dependencies:
 
 ```powershell
-py -m venv .venv
-.venv\Scripts\Activate.ps1
+py -3.9 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-Copy-Item .env.example .env
 ```
 
-Edit `.env` locally. Set `DATASET_DIR` to the dataset root and `GNANI_API_KEY` for real speech processing. Never share or commit credentials. The application supports these optional LLM settings:
+Set `DATASET_DIR` to the separately extracted dataset root (the folder containing `kb/` and `data/`). Create a local `.env` file only if you need the live provider integrations. The key variables are `DATASET_DIR`, `GNANI_API_KEY`, `LLM_PROVIDER`, `LLM_API_KEY`, and `LLM_MODEL`; use values supported by your accounts and never commit credentials. Offline tests do not need provider credentials.
 
-```text
-LLM_PROVIDER=<anthropic|openai|groq|gemini|openrouter|openai-compatible>
-LLM_API_KEY=<set-locally>
-LLM_MODEL=<provider-model-id>
-LLM_BASE_URL=<optional-base-url>
-```
+## Offline validation commands
 
-`LLM_MODEL` is optional when the selected provider has a default model. `LLM_BASE_URL` overrides the provider endpoint and is required for an unlisted OpenAI-compatible endpoint. Instead of `LLM_API_KEY`, the application also recognizes `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `GOOGLE_API_KEY`, and `OPENROUTER_API_KEY`. Configure credentials only in your local `.env`; the example above contains placeholders, not usable values.
-
-## Audio-folder runner
-
-### Normal LLM-capable mode
-
-With Gnani speech credentials and an LLM provider/key configured, the runner uses the configured LLM unless `--offline` is specified:
+Run these from the project root after the separate dataset is available:
 
 ```powershell
-python run.py --audio-dir "samples\incoming" --output-dir "output" --language-code en-IN
+$env:DATASET_DIR = "C:\path\to\Capstone_Project_Dataset_FTTT_2026"
+$env:VOICEOPS_NO_ENV_LOAD = "1"
+$env:VOICEOPS_ENABLE_HYBRID_RAG = "0"
+python -m pytest -q --deselect="tests/test_retrieval_v8.py::test_hidden_case_evidence_recall_at_seven_is_complete"
+python "$env:DATASET_DIR\validate_dataset.py"
+python eval/eval_questions.py --mode offline
+python eval/eval_questions.py --mode offline --field asr_text
+python eval/eval_conversations.py --mode offline
 ```
 
-This normal mode can use the configured LLM; no live LLM request was made during this finalization. Speech input and reply audio use Gnani STT/TTS.
+The public-package test command reports 69 passed and 1 deselected. The deselected test requires `eval/hidden_cases.csv`, a private evaluation input intentionally excluded from the repository and submission package. Do not describe the unfiltered suite as passing. Compilation and the separate dataset validator passed.
 
-### Offline rules-only mode
+## Running the agent
+
+For real speech input/output, configure the dataset, Gnani key, and (if desired) LLM provider locally. Provide a folder of supported audio files and use a fresh output directory:
 
 ```powershell
-python run.py --audio-dir "samples\incoming" --output-dir "output_offline" --language-code en-IN --offline
+python run.py --audio-dir "C:\path\to\audio" --output-dir "out" --language-code en-IN
 ```
 
-`--offline` uses deterministic rules instead of the LLM and makes no LLM calls. With real WAV inputs, it still uses Gnani STT/TTS and therefore still needs `GNANI_API_KEY`. For a no-Gnani dry run, provide a same-name `.txt` transcript for each audio file and add `--dry-run`; that mode writes silent reply WAVs.
+The runner accepts `--out` as an alias for `--output-dir`. Real audio runs call the speech provider; LLM-backed answers may also make provider requests. Do not use real customer data for demonstrations or tests unless you have authorization and appropriate safeguards. The optional `--dry-run` mode reads same-named `.txt` transcripts and writes silent WAVs, without Gnani calls.
 
-For each input the runner writes `<name>.reply.txt`, `<name>.reply.wav`, and `<name>.json`, including transcript, reply, decision, evidence IDs, tool calls, and errors. It also writes `results.csv` and `results.jsonl`. The output directory must be fresh: existing output paths are never overwritten. If a file fails, the batch continues and exits nonzero after recording the error. Empty transcripts receive a clarification reply and spoken audio.
+The local demo interface can be started with `python demo_server.py`. Browser microphone permissions and live browser-to-agent behavior were not tested; the prerecorded synthetic-file smoke test does not verify that path.
 
-The included synthetic conversation demonstrates retrieved evidence IDs such as `RET-2`, `RET-9`, `PLS-2`, and `ESC-1`.
+### Gnani speech smoke test
 
-## Verified results
+Install dependencies with `python -m pip install -r requirements.txt`. Run `python scripts/gnani_smoke_test.py --stt-only` for one STT request, or `python scripts/gnani_smoke_test.py --tts-only` for one TTS request without repeating STT. Running without either option tests both with at most one request each; live checks use provider credits. The latest bounded synthetic-clip check passed both: STT returned a nonempty transcript (text is never printed), and TTS generated a readable nonempty WAV. The previous STT failure was not reproduced, and its root cause is not established. Browser microphone behavior and complete production end-to-end behavior remain unverified. The script requires `ffmpeg`, normalizes STT input to mono 16-bit PCM at 16 kHz, and reports only sanitized diagnostic fields (not raw provider messages, credentials, or transcript text). `python scripts/preflight.py --gnani` invokes the combined diagnostic. Live checks are not run automatically by pytest or CI.
 
-- Step 1 prompt-only baseline (saved): 52 questions, **23.1% content**, **88.5% decision** accuracy, **0.000 retrieval recall**.
-- Step 2 RAG baseline (saved): 52 questions, **96.2% content**, **96.2% decision** accuracy, **0.819 retrieval recall**.
-- Step 3 RAG conversation baseline (saved): 96 turns, **99.0%** checks/content, **100.0%** decision/tool-call accuracy, **22/23** fully correct conversations.
-- Step 4 synthetic voice pipeline: **3 turns**, **3 STT + 3 TTS calls**, **0 errors**; the human-request turn created a handoff ticket.
-- Current regression suite: **47 passed**. Focused product/retrieval tests: **23 passed**. Batch runner tests: **4 passed**.
-- Test-packaging note: the 47-test run was verified in the full workspace. This clean archive omits the private `eval/hidden_cases.csv` by design, so `test_hidden_case_evidence_recall_at_seven_is_complete` requires that separately retained file to run.
-- Dataset validator: **PASS** — 9 CSVs, 21 KB documents, 1,000 orders, 1,783 items, 244 logs, 52 questions, 23 conversations.
-- Post-repair rules-only offline questions (52): normal and ASR each scored **100.0% content**, **100.0% decision accuracy**, and **0.989 mean retrieval recall**. These are offline rules metrics, not the Step 1 prompt-only or Step 2 RAG scores.
-- Post-repair offline conversations: **96 turns**, **100.0%** checks, decisions, content, and tool-call accuracy; **23/23** fully correct.
-- The verified synthetic voice run used real Gnani STT/TTS with the agent in offline rules mode. The demo interleaves the synthetic customer-input clips with their actual synthesized agent replies. No personal recordings were used.
+## Recorded evaluation results
 
-Browser microphone behavior, personal recordings, and live LLM-enabled behavior were not tested in this finalization. Previous saved RAG scores are historical baselines; no external LLM calls were made for this update. Offline scores do not establish live LLM performance.
+| Evaluation | Recorded result | Mean retrieval recall |
+|---|---|---:|
+| Offline normal questions (52) | 100.0% content; 100.0% decision | 0.968 |
+| Offline ASR-text questions (52) | 100.0% content; 100.0% decision | 0.968 |
+| Offline conversations (96 turns / 23 conversations) | 100.0% checks; 23/23 conversations fully correct | 0.944 |
+| Bounded RAG normal questions (52) | 98.1% content; 96.2% decision | 0.968 |
+| Bounded RAG ASR-text questions (52) | 100.0% content; 94.2% decision | 0.968 |
+| Bounded RAG conversations (96 turns) | 100.0% checks and decisions; 23/23 fully correct | 0.944 |
+
+These are the recorded results for this candidate, not independently reproduced by the packaging step. The offline retrieval recall is lower than the saved previous baseline (normal/ASR: 0.989 to 0.968; conversations: 1.000 to 0.944). The tested rollback experiments did not recover the decrease. The latest ASR RAG decision accuracy was 94.2%. A prior ASR RAG run suffered a provider transport error and fell back to offline answers; it is not counted as valid RAG evidence.
+
+## Known limitations
+
+- The earlier STT smoke-test attempt failed, but that failure was not reproduced by the latest bounded test. Latest synthetic-clip STT and TTS checks passed with one request each. No root cause for the earlier failure is known; browser microphone and production end-to-end behavior remain unverified.
+- Embedding retrieval was not validated with a confirmed model configuration.
+- The held-out diagnostic set was highly templated, so it is not strong evidence of general retrieval quality.
+- The existing demo is prerecorded synthetic media; its contents alone do not establish provider verification. The separate bounded smoke-test result is recorded above.
+
+No dataset files, hidden cases/labels, evaluation result JSONs, caches, request-budget ledgers, `.env`, `.env.example`, credentials, `.venv`, `.git`, logs, backups, or temporary audio files are included. See `SUBMISSION_VALIDATION.md` for package and validation details.

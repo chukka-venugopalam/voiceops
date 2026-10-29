@@ -4,6 +4,38 @@ import hashlib, json, os, pathlib, re, time, urllib.error, urllib.request
 
 class LLMError(Exception): pass
 
+_LLM_REQUEST_LIMIT = 400
+_LLM_BUDGET_PATH = pathlib.Path(__file__).resolve().parents[2] / '.cache' / 'llm' / 'voiceops_v9_1_2_request_budget.json'
+
+class _PersistentLLMCallBudget:
+    def __init__(self, path=None, limit=_LLM_REQUEST_LIMIT):
+        self.path = pathlib.Path(path) if path is not None else _LLM_BUDGET_PATH
+        self.limit = int(limit)
+    def _read(self):
+        if not self.path.exists(): return {'used': 0, 'limit': self.limit}
+        try:
+            state = json.loads(self.path.read_text(encoding='utf-8'))
+            used, limit = state['used'], state['limit']
+            if not isinstance(used, int) or used < 0 or used > self.limit or limit != self.limit: raise ValueError('invalid budget')
+            return {'used': used, 'limit': limit}
+        except Exception as e:
+            raise LLMError('LLM request-budget ledger unreadable; refusing network calls') from e
+    def used(self): return self._read()['used']
+    def remaining(self): return self.limit - self.used()
+    def consume(self):
+        state = self._read()
+        if state['used'] >= self.limit: raise LLMError(f'LLM request budget exhausted at {self.limit}; no further request sent')
+        state['used'] += 1; state['updated_epoch'] = int(time.time())
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        temp = self.path.with_suffix(self.path.suffix + f'.{os.getpid()}.tmp')
+        try:
+            temp.write_text(json.dumps(state, sort_keys=True), encoding='utf-8')
+            os.replace(temp, self.path)
+        finally:
+            try: temp.unlink()
+            except FileNotFoundError: pass
+        return state['used']
+
 _DEFAULTS = {   # (base_url, default model). Set LLM_MODEL yourself: model names and free quotas change often.
     "openai": ("https://api.openai.com/v1", "gpt-4o-mini"),
     "groq": ("https://api.groq.com/openai/v1", "llama-3.3-70b-versatile"),
@@ -28,6 +60,7 @@ class _HTTPLLM(BaseLLM):
         self.model, self.api_key, self.base_url, self.timeout = model, api_key, base_url.rstrip("/"), timeout
         self.cache_dir = pathlib.Path(os.environ.get("LLM_CACHE_DIR", ".cache/llm")) if cache and os.environ.get("LLM_CACHE", "1") != "0" else None
         self.calls = 0; self.cache_hits = 0
+        self.request_budget = _PersistentLLMCallBudget()  # caps actual HTTP attempts, including retries, at 400 across runs
         self.min_interval = float(os.environ.get("LLM_MIN_INTERVAL") or 0)      # seconds between real calls (free tiers: e.g. 4.5 = 13 calls/minute)
         self.retries = int(os.environ.get("LLM_RETRIES") or 4); self._last = 0.0
     def _key(self, system, messages, max_tokens, temperature):
@@ -37,10 +70,11 @@ class _HTTPLLM(BaseLLM):
     def _retry_delay(body: str):
         m = re.search(r'retryDelay"?\s*[:=]\s*"?(\d+(?:\.\d+)?)s', body) or re.search(r"retry in (\d+(?:\.\d+)?)s", body, re.I)
         return float(m.group(1)) if m else None
-    def _post(self, url, headers, payload, method="POST"):
+    def _post(self, url, headers, payload, method="POST", count_budget=True):
         data = json.dumps(payload).encode("utf-8") if payload is not None else None
         last = None
         for attempt in range(self.retries + 1):
+            if count_budget: self.request_budget.consume()  # every attempt, including retries, is charged before send
             try:
                 req = urllib.request.Request(url, data=data, method=method, headers={"Content-Type": "application/json", **headers})
                 with urllib.request.urlopen(req, timeout=self.timeout) as r:
@@ -62,7 +96,7 @@ class _HTTPLLM(BaseLLM):
         """Model ids this key can use (OpenAI-compatible /models, or Anthropic /v1/models)."""
         hdr = {"x-api-key": self.api_key, "anthropic-version": "2023-06-01"} if self.name == "anthropic" else {"Authorization": f"Bearer {self.api_key}"}
         url = f"{self.base_url}/v1/models" if self.name == "anthropic" else f"{self.base_url}/models"
-        r = self._post(url, hdr, None, method="GET")
+        r = self._post(url, hdr, None, method="GET", count_budget=False)  # /models discovery is not a generation call
         return sorted((m.get("id") or m.get("name") or "").replace("models/", "") for m in r.get("data", r.get("models", [])))
     def complete(self, system, messages, max_tokens=600, temperature=0.0):
         key = self._key(system, messages, max_tokens, temperature)
